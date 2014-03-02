@@ -11,7 +11,7 @@ window.onload = function() {
     tools[0] = pencil();
     tools[1] = arc();
 
-    tools[1].activate();
+    tools[0].activate();
 }
 
 function emitEvent(eventName, data) {
