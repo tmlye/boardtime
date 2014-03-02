@@ -1,17 +1,5 @@
 tool.maxDistance = 50;
 
-// Returns an object specifying a semi-random color
-// The color will always have a red value of 0
-// and will be semi-transparent (the alpha value)
-function randomColor() {
-    return {
-        red: 0,
-        green: Math.random(),
-        blue: Math.random(),
-        alpha: ( Math.random() * 0.25 ) + 0.05
-    };
-}
-
 // every time the user drags their mouse
 // this function will be executed
 function onMouseDrag(event) {
@@ -21,8 +9,8 @@ function onMouseDrag(event) {
     // The faster the movement, the bigger the circle
     var radius = event.delta.length / 2;
     // Generate our random color
-    var color = randomColor();
-    // Draw the circle 
+    var color = { red: 0, green: 0, blue: 0, alpha: 1 };
+    // Draw the circle
     drawCircle( x, y, radius, color );
     // Pass the data for this circle
     // to a special function for later
@@ -56,13 +44,6 @@ function emitCircle( x, y, radius, color ) {
     console.log( data )
 }
 
-// Listen for 'drawCircle' events
-// created by other users
 io.on( 'drawCircle', function( data ) {
-
-    console.log( data );
-
-    // Draw the circle using the data sent
-    // from another user
     drawCircle( data.x, data.y, data.radius, data.color );
 });

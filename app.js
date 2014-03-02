@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -36,12 +35,16 @@ var io = require('socket.io').listen(server, function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 io.sockets.on('connection', function (socket) {
-    socket.on('ping', function ( data ) {
-        console.log('socket: server recieves ping (2)');
-        io.sockets.emit( 'pong', data );
-        console.log('socket: server sends pong (3)');
+    socket.on( 'mouseDown', function( data, session ) {
+        console.log('received mouse down event, session: ' + session);
+        socket.broadcast.emit( 'mouseDown', data );
     });
-    socket.on( 'drawCircle', function( data, session ) {
-        socket.broadcast.emit( 'drawCircle', data );
+    socket.on( 'mouseDrag', function( data, session ) {
+        console.log('received mouse down event, session: ' + session);
+        socket.broadcast.emit( 'mouseDrag', data );
+    });
+    socket.on( 'mouseUp', function( data, session ) {
+        console.log('received mouse down event, session: ' + session);
+        socket.broadcast.emit( 'mouseUp', data );
     });
 });
