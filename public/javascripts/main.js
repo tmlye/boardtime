@@ -9,15 +9,9 @@ window.onload = function() {
 
     // Initialize tools
     tools[0] = pencil();
+    tools[1] = arc();
 
-    // tool2 = new Tool();
-    // tool2.minDistance = 20;
-    // tool2.onMouseDown = onMouseDown;
-
-    // tool2.onMouseDrag = function(event) {
-        // Use the arcTo command to draw cloudy lines
-        // path.arcTo(event.point);
-    // }
+    tools[1].activate();
 }
 
 function emitEvent(eventName, data) {

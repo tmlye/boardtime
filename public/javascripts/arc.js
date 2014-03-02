@@ -1,12 +1,13 @@
-// Inheritance with functional pattern
-var pencil = function() {
+var arc = function() {
     var that = new Tool();
     var path;
 
-    that.toolId = 0;
+    that.toolId = 1;
+
+    that.minDistance = 25;
 
     that.mouseDragHandler = function(data) {
-        path.add(data.point);
+        path.arcTo(data.point);
     };
 
     that.mouseDownHandler = function(data) {
@@ -23,17 +24,17 @@ var pencil = function() {
     // EVENTS
     that.onMouseDown = function onMouseDown(event) {
         that.mouseDownHandler(event);
-        emitEvent('mouseDown', { toolId: 0, point: { x: event.point.x, y: event.point.y }});
+        emitEvent('mouseDown', { toolId: 1, point: { x: event.point.x, y: event.point.y }});
     };
 
     that.onMouseDrag = function(event) {
         that.mouseDragHandler(event);
-        emitEvent('mouseDrag', { toolId: 0, point: { x: event.point.x, y: event.point.y }});
+        emitEvent('mouseDrag', { toolId: 1, point: { x: event.point.x, y: event.point.y }});
     };
 
     that.onMouseUp = function(event) {
         that.mouseUpHandler(event);
-        emitEvent('mouseDown', { toolId: 0, point: { x: event.point.x, y: event.point.y }});
+        emitEvent('mouseDown', { toolId: 1, point: { x: event.point.x, y: event.point.y }});
     };
 
     return that;
