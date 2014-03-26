@@ -1,7 +1,15 @@
 // Inheritance with functional pattern
-var pencil = function() {
-    var that = new Tool();
-    var path;
+var pencil = function(context) {
+    var that = {};
+    that.context = context;
+
+    that.activate = function() {
+        // brush settings
+        context.lineWidth = 2;
+        context.lineJoin = 'round';
+        context.lineCap = 'round';
+        context.strokeStyle = '#000';
+    };
 
     that.toolId = 0;
 

@@ -1,6 +1,8 @@
 extends layout
 
 block content
-    input(type='button' onclick='javascript:tools[0].activate();' value='Pencil')
-    input(type='button' onclick='javascript:tools[1].activate();' value='Cloud thingy')
-    canvas(id='board', resize='true')
+    div(id='boardwrapper')
+      div(class='control')
+        input(type='button' onclick='javascript:tools[0].activate();' value='Pencil')
+        input(type='button' onclick='javascript:tools[1].activate();' value='Cloud thingy')
+      canvas(id='board')
