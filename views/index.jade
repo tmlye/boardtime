@@ -3,6 +3,6 @@ extends layout
 block content
     div(id='boardwrapper')
       div(class='control')
-        input(type='button' onclick='javascript:tools[0].activate();' value='Pencil')
-        input(type='button' onclick='javascript:tools[1].activate();' value='Cloud thingy')
+        input(type='button' style='display:none;' onclick='javascript:tools[0].activate();' value='Pencil')
+        input(type='button' style='display:none;' onclick='javascript:tools[1].activate();' value='Cloud thingy')
       canvas(id='board')

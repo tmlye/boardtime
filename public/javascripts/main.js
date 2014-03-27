@@ -1,14 +1,20 @@
 var canvas = document.getElementById('board');
 var context = canvas.getContext('2d');
 
+var lastMouse = {
+    x: 0,
+    y: 0
+};
+
 // attach the mousedown, mouseout, mousemove, mouseup event listeners.
 canvas.addEventListener('mousedown', function (e) {
+  lastMouse = {
+    x: e.pageX,
+    y: e.pageY
+  };
   activeTool.mouseDownHandler(e);
   // emitEvent('mouseDown', {});
-  canvas.addEventListener('mousemove', function(e) {
-      activeTool.mouseDragHandler(e);
-      onMouseMove(e);
-  } , false);
+  canvas.addEventListener('mousemove', onMouseMove, false);
 }, false);
 
 canvas.addEventListener('mouseout', function () {
@@ -20,7 +26,8 @@ canvas.addEventListener('mouseup', function () {
 }, false);
 
 function onMouseMove(e) {
-      emitEvent('mouseDrag', {toolId: activeTool.toolId, point: { x: mouse.x, y: mouse.y }, lastPoint: { x: lastMouse.x, y: lastMouse.y }, color: context.strokeStyle, line: context.lineWidth, globalCompositeOperation: context.globalCompositeOperation});
+    emitEvent('mouseDrag', {toolId: activeTool.toolId, point: { x: e.pageX, y: e.pageY }, lastPoint: { x: lastMouse.x, y: lastMouse.y }, color: context.strokeStyle, line: context.lineWidth, globalCompositeOperation: context.globalCompositeOperation});
+    activeTool.mouseDragHandler(e);
 }
 
 // global reference to all tools

@@ -2,8 +2,7 @@ var io = io.connect('/');
 
 io.on('mouseDrag', function( data ) {
     console.log('received mouse drag event');
-    // tools[data.toolId].mouseDragHandler(data);
-    draw(data.lastPoint, data.point, data.color, data.line, data.globalCompositeOperation );
+    activeTool.draw(data.lastPoint, data.point, data.color, data.line, data.globalCompositeOperation );
 });
 
 io.on('mouseDown', function( data ) {
