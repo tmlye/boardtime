@@ -1,2 +1,4 @@
-node-test
+boardtime
 =========
+
+Realtime collaborative whiteboard
