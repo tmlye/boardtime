@@ -42,8 +42,13 @@ window.onload = function() {
     tools[0] = pencil(context);
     // tools[1] = arc();
 
+    activateTool(0);
+}
+
+function activateTool(id) {
     tools[0].activate();
     activeTool = tools[0];
+    tools[0].setCursor();
 }
 
 function emitEvent(eventName, data) {

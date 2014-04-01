@@ -27,6 +27,31 @@ var pencil = function() {
     that.mouseUpHandler = function(e) {
     };
 
+    // Uses temporary canvas to set the cursor
+    that.setCursor = function() {
+        var cursorSize = context.lineWidth;
+        if (cursorSize < 10) {
+            cursorSize = 10;
+        }
+
+        var cursorColor = context.strokeStyle;
+        var cursorGenerator = document.createElement('canvas');
+        cursorGenerator.width = cursorSize;
+        cursorGenerator.height = cursorSize;
+        var ctx = cursorGenerator.getContext('2d');
+
+        var centerX = cursorGenerator.width / 2;
+        var centerY = cursorGenerator.height / 2;
+
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, (cursorSize / 2) - 4, 0, 2 * Math.PI, false);
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = cursorColor;
+        ctx.stroke();
+        $('#board').css('cursor', 'url(' + cursorGenerator.toDataURL('image/png') + ')'
+                                         + cursorSize / 2 + ' ' + cursorSize / 2 + ',crosshair');
+    };
+
     that.draw = function draw(start, end, color, size, compositeOperation, save) {
       context.save();
       context.lineJoin = 'round';
