@@ -31,9 +31,7 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 
 var server = http.createServer(app).listen(app.get('port'));
-var io = require('socket.io').listen(server, function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
+var io = require('socket.io').listen(server);
 io.sockets.on('connection', function (socket) {
     socket.on( 'mouseDown', function( data, session ) {
         console.log('received mouse down event, session: ' + session);

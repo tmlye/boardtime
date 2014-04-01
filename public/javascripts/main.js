@@ -43,6 +43,23 @@ window.onload = function() {
     // tools[1] = arc();
 
     activateTool(0);
+
+    $('#colorSelector').ColorPicker({
+        color: '#000',
+        onShow: function (colpkr) {
+            $(colpkr).fadeIn(500);
+            return false;
+        },
+        onHide: function (colpkr) {
+            $(colpkr).fadeOut(500);
+            return false;
+        },
+        onChange: function (hsb, hex, rgb) {
+            $('#colorSelector').css('backgroundColor', '#' + hex);
+            context.strokeStyle = '#' + hex;
+            activeTool.setCursor();
+        }
+    });
 }
 
 function activateTool(id) {
@@ -53,9 +70,9 @@ function activateTool(id) {
 
 function emitEvent(eventName, data) {
     // Each Socket.IO connection has a unique session id
-    var sessionId = io.socket.sessionid;
+    // var sessionId = io.socket.sessionid;
 
-    io.emit(eventName, data, sessionId)
+    io.emit(eventName, data)
 
     // Lets have a look at the data we're sending
     // console.log( data )

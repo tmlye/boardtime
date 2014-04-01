@@ -7,7 +7,7 @@ var pencil = function() {
         context.lineWidth = 2;
         context.lineJoin = 'round';
         context.lineCap = 'round';
-        context.strokeStyle = '#000';
+        // context.strokeStyle = '#000';
     };
 
     that.toolId = 0;
